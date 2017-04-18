@@ -43,7 +43,38 @@ var updateDisplayedJoke = function () {
   } else {
     jokeBox.textContent = 'No matching joke found.'
   }
-  // jokeBox.textContent = requestedJokeKey
+}
+
+// Add a new joke
+var rememberbutton = document.getElementById('remember-button')
+var newdesc = document.getElementById('new-desc')
+var newset = document.getElementById('new-setup')
+var newpunch = document.getElementById('new-punchline')
+var addNewJoke = function () {
+  var newJokeKey = newdesc.value
+  var joke = jokes[newJokeKey]
+  if (joke) {
+    joke.setup = newset.value
+    joke.punchline = newpunch.value
+  } else {
+    jokes[newJokeKey] = {}
+    joke = jokes[newJokeKey]
+    joke.setup = newset.value
+    joke.punchline = newpunch.value
+  }
+  updatePage()
+}
+
+// forget a jokeBox
+var forgetbutton = document.getElementById('forget-button')
+var deldesc = document.getElementById('del-desc')
+var deleteJoke = function () {
+  var newJokeKey = deldesc.value
+  var joke = jokes[newJokeKey]
+  if (joke) {
+    delete jokes[newJokeKey]
+  }
+  updatePage()
 }
 
 // Function to keep track of all other
@@ -67,3 +98,5 @@ updatePage()
 
 // Keep the requested joke up-to-date
 requestedJokeInput.addEventListener('input', updateDisplayedJoke)
+rememberbutton.addEventListener('click', addNewJoke)
+forgetbutton.addEventListener('click', deleteJoke)
