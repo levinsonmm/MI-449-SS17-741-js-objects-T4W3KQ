@@ -65,10 +65,10 @@ var addNewJoke = function () {
     joke.setup = newset.value
     joke.punchline = newpunch.value
   } else {
-    jokes[newJokeKey] = {}
-    joke = jokes[newJokeKey]
-    joke.setup = newset.value
-    joke.punchline = newpunch.value
+    jokes[newJokeKey] = {
+      setup: newset.value,
+      punchline: newpunch.value
+    }
   }
   updatePage()
 }
